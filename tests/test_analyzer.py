@@ -54,5 +54,34 @@ class AuditTests(unittest.TestCase):
                 load_accounts(p)
 
 
+    def test_future_activity_rejected(self):
+        accounts = load_accounts(ROOT / 'data/clean_accounts.csv')
+        accounts[0]['last_console_login'] = date(2027, 1, 1)
+        with self.assertRaisesRegex(ValueError, 'after review date'):
+            audit(accounts, AS_OF)
+
+    def test_missing_csv_columns_rejected(self):
+        with tempfile.TemporaryDirectory() as folder:
+            p = Path(folder) / 'bad.csv'
+            content = (ROOT / 'data/clean_accounts.csv').read_text()
+            p.write_text('\\n'.join(content.splitlines()[:1]) + '\\n' + 'short,active,true\\n')
+            with self.assertRaisesRegex(ValueError, 'missing field value'):
+                load_accounts(p)
+
+    def test_extra_csv_columns_rejected(self):
+        with tempfile.TemporaryDirectory() as folder:
+            p = Path(folder) / 'bad.csv'
+            content = (ROOT / 'data/clean_accounts.csv').read_text()
+            p.write_text(content + content.splitlines()[1] + ',extra\\n')
+            with self.assertRaisesRegex(ValueError, 'extra columns'):
+                load_accounts(p)
+
+    def test_missing_activity_is_not_inactivity_proof(self):
+        accounts = load_accounts(ROOT / 'data/sample_accounts.csv')
+        account = next(a for a in accounts if a['user'] == 'service.legacy')
+        findings = audit([account], AS_OF)
+        self.assertEqual([f['rule'] for f in findings], ['STALE_ACCESS_KEY'])
+
+
 if __name__ == '__main__':
     unittest.main()
