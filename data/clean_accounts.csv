@@ -1,0 +1,3 @@
+user,account_status,mfa_active,last_console_login,access_key_active,access_key_last_used,policy,role,approved_admin
+john.smith,active,true,2026-10-29,false,,ReadOnlyAccess,Analyst,false
+admin.approved,active,true,2026-10-25,false,,AdministratorAccess,Administrator,true
