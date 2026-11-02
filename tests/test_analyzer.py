@@ -64,7 +64,7 @@ class AuditTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as folder:
             p = Path(folder) / 'bad.csv'
             content = (ROOT / 'data/clean_accounts.csv').read_text()
-            p.write_text('\\n'.join(content.splitlines()[:1]) + '\\n' + 'short,active,true\\n')
+            p.write_text('\n'.join(content.splitlines()[:1]) + '\n' + 'short,active,true\n')
             with self.assertRaisesRegex(ValueError, 'missing field value'):
                 load_accounts(p)
 
@@ -72,7 +72,7 @@ class AuditTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as folder:
             p = Path(folder) / 'bad.csv'
             content = (ROOT / 'data/clean_accounts.csv').read_text()
-            p.write_text(content + content.splitlines()[1] + ',extra\\n')
+            p.write_text(content + content.splitlines()[1] + ',extra\n')
             with self.assertRaisesRegex(ValueError, 'extra columns'):
                 load_accounts(p)
 
