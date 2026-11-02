@@ -1,0 +1,6 @@
+user,rule,severity,evidence,recommendation
+mike.brown,INACTIVE_IDENTITY,Medium,No recorded console or active-key use within 90 days,Confirm all access methods and account ownership before disabling access.
+mike.brown,STALE_ACCESS_KEY,Medium,Active key last used 2026-04-12,Verify key usage and retire unnecessary keys after coordination.
+sarah.jones,MFA_DISABLED,High,MFA marked inactive in simulated account inventory,Confirm authentication requirements and enable appropriate MFA controls.
+sarah.jones,UNAPPROVED_ADMIN,High,AdministratorAccess assigned without recorded approval,Validate business need and approval; reduce privileges if not required.
+service.legacy,STALE_ACCESS_KEY,Medium,Active key has no recorded use,Verify key usage and retire unnecessary keys after coordination.
