@@ -32,10 +32,12 @@ def load_accounts(path):
         accounts = []
         seen = set()
         for line, row in enumerate(reader, 2):
-            if not row or not any((v or '').strip() for v in row.values() if isinstance(v, str)):
+            if not row or all(v is None or not str(v).strip() for v in row.values()):
                 continue
             if None in row:
                 raise ValueError(f'Line {line}: unexpected extra columns')
+            if any(row.get(field) is None for field in FIELDS):
+                raise ValueError(f'Line {line}: missing field value; check CSV column count')
             user = (row['user'] or '').strip()
             if not user or user in seen:
                 raise ValueError(f'Line {line}: missing or duplicate user')
@@ -60,6 +62,10 @@ def audit(accounts, as_of, inactivity_days=90):
                          'evidence': evidence, 'recommendation': recommendation})
 
     for account in accounts:
+        for field in ('last_console_login', 'access_key_last_used'):
+            activity = account[field]
+            if activity is not None and activity > as_of:
+                raise ValueError(f"{account['user']}: {field} ({activity.isoformat()}) is after review date {as_of.isoformat()}")
         if account['account_status'].lower() != 'active':
             continue
         user = account['user']
