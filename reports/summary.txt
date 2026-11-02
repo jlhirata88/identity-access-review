@@ -1,0 +1,23 @@
+Identity Access Review | as of 2026-11-02
+Accounts reviewed: 6
+Findings: 5
+
+[Medium] mike.brown — INACTIVE_IDENTITY
+  Evidence: No recorded console or active-key use within 90 days
+  Recommendation: Confirm all access methods and account ownership before disabling access.
+
+[Medium] mike.brown — STALE_ACCESS_KEY
+  Evidence: Active key last used 2026-04-12
+  Recommendation: Verify key usage and retire unnecessary keys after coordination.
+
+[High] sarah.jones — MFA_DISABLED
+  Evidence: MFA marked inactive in simulated account inventory
+  Recommendation: Confirm authentication requirements and enable appropriate MFA controls.
+
+[High] sarah.jones — UNAPPROVED_ADMIN
+  Evidence: AdministratorAccess assigned without recorded approval
+  Recommendation: Validate business need and approval; reduce privileges if not required.
+
+[Medium] service.legacy — STALE_ACCESS_KEY
+  Evidence: Active key has no recorded use
+  Recommendation: Verify key usage and retire unnecessary keys after coordination.
