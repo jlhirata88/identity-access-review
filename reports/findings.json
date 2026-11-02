@@ -1,0 +1,41 @@
+{
+  "as_of": "2026-11-02",
+  "accounts_reviewed": 6,
+  "findings": [
+    {
+      "user": "mike.brown",
+      "rule": "INACTIVE_IDENTITY",
+      "severity": "Medium",
+      "evidence": "No recorded console or active-key use within 90 days",
+      "recommendation": "Confirm all access methods and account ownership before disabling access."
+    },
+    {
+      "user": "mike.brown",
+      "rule": "STALE_ACCESS_KEY",
+      "severity": "Medium",
+      "evidence": "Active key last used 2026-04-12",
+      "recommendation": "Verify key usage and retire unnecessary keys after coordination."
+    },
+    {
+      "user": "sarah.jones",
+      "rule": "MFA_DISABLED",
+      "severity": "High",
+      "evidence": "MFA marked inactive in simulated account inventory",
+      "recommendation": "Confirm authentication requirements and enable appropriate MFA controls."
+    },
+    {
+      "user": "sarah.jones",
+      "rule": "UNAPPROVED_ADMIN",
+      "severity": "High",
+      "evidence": "AdministratorAccess assigned without recorded approval",
+      "recommendation": "Validate business need and approval; reduce privileges if not required."
+    },
+    {
+      "user": "service.legacy",
+      "rule": "STALE_ACCESS_KEY",
+      "severity": "Medium",
+      "evidence": "Active key has no recorded use",
+      "recommendation": "Verify key usage and retire unnecessary keys after coordination."
+    }
+  ]
+}
