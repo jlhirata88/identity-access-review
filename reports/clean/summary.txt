@@ -1,0 +1,5 @@
+Identity Access Review | as of 2026-11-02
+Accounts reviewed: 2
+Findings: 0
+
+No findings under the configured rules. This is not proof of a secure environment.
