@@ -32,11 +32,17 @@ Run a clean baseline:
 python analyzer.py data/clean_accounts.csv --as-of 2026-11-02 --output reports/clean
 ```
 
-Run tests:
+Run tests locally (11 unit tests):
 
 ```bash
 python -m unittest discover -s tests -v
 ```
+
+## Automated checks
+
+GitHub Actions runs the unit tests and validates the five expected simulated findings on pushes and pull requests. View the **Actions** tab for the latest run status. No AWS credentials are used.
+
+Input validation rejects malformed CSV rows and future-dated activity relative to the selected review date. This does not replace a full production data-quality review.
 
 ## Sample results
 
