@@ -1,0 +1,7 @@
+user,account_status,mfa_active,last_console_login,access_key_active,access_key_last_used,policy,role,approved_admin
+john.smith,active,true,2026-10-29,false,,ReadOnlyAccess,Analyst,false
+sarah.jones,active,false,2026-10-30,false,,AdministratorAccess,Developer,false
+mike.brown,active,true,2026-04-10,true,2026-04-12,ReadOnlyAccess,Contractor,false
+service.legacy,active,true,,true,,ReadOnlyAccess,Service,false
+admin.approved,active,true,2026-10-25,false,,AdministratorAccess,Administrator,true
+former.employee,disabled,false,2026-01-01,true,2026-01-01,AdministratorAccess,FormerEmployee,false
